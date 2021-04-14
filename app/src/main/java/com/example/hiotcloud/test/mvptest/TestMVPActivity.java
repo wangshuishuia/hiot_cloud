@@ -8,8 +8,6 @@ import android.widget.Toast;
 
 import com.example.hiotcloud.R;
 import com.example.hiotcloud.base.BaseActivity;
-import com.example.hiotcloud.test.dagger2test.DaggerPresenterComponent;
-import com.example.hiotcloud.test.dagger2test.PresenterComponent;
 import com.example.hiotcloud.test.mvptest.model.User;
 
 import javax.inject.Inject;
@@ -22,7 +20,7 @@ public class TestMVPActivity extends BaseActivity<TestView,TestPresenter> implem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        getComponent().inject(this);
+       getActivityComponent().inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_mvp);
         final EditText etUserName = findViewById(R.id.et_user_name);
@@ -55,13 +53,7 @@ public class TestMVPActivity extends BaseActivity<TestView,TestPresenter> implem
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * 创建注入器
-     * @return
-     */
-    public PresenterComponent getComponent(){
-        return DaggerPresenterComponent.builder().build();
-    }
+
 //    private void login(User user) {
 //        if ("lisi".equals(user.getUserName()) && "123".equals(user.getPassword())){
 //            Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
